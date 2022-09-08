@@ -1,5 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// Bootstrap CSS
+import "./custom.scss";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
