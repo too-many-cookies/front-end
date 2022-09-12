@@ -7,11 +7,28 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import {
+    BrowserRouter as Router,
+    Routes, 
+    Route
+} from "react-router-dom";
+
+import Classes from './pages/Classes';
+import ActivityLog from './pages/Activitylog';
+import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <Router>
+        <Routes>
+                <Route path="/" element={<App />}/>
+                <Route path="/home" element={<Home />}/>
+                <Route path="/classes" element={<Classes />}/>
+                <Route path="/activitylog" element={<ActivityLog />}/>
+        </Routes>
+    </Router>
   </React.StrictMode>
 );
 
