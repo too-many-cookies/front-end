@@ -1,13 +1,13 @@
 import Navbar from "../components/Navbar";
 import React from "react";
 
-function ActivityLog() {
+function Classes() {
     return (
-        <div className="ActivityLog">
+        <div className="Classes">
             <Navbar />
-            <h1>ActivityLog</h1>
+            <h1>Classes</h1>
         </div>
     );
 }
 
-export default ActivityLog;
+export default Classes;

@@ -13,12 +13,14 @@ import {
     Route
 } from "react-router-dom";
 
+import { createRoot } from 'react-dom/client';
+
 import Classes from './pages/Classes';
 import ActivityLog from './pages/Activitylog';
 import Home from './pages/Home';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const rootElement = document.getElementById("root") as HTMLBodyElement;
+createRoot(rootElement).render(
   <React.StrictMode>
     {/* <App /> */}
     <Router>

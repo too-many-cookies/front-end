@@ -8,15 +8,6 @@ import React from "react";
 function App() {
   return (
     <div className="App">
-       {/* <header className="App-header"> */}
-         {/* <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <h1>Hey</h1>
-    //     <Button variant="orange">Test</Button> */}
-        
-       {/* </header> */}
        <Navbar />
      </div>
    );
