@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 // Bootstrap CSS
 import "./custom.scss";
 // Bootstrap Bundle JS

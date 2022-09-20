@@ -20,22 +20,13 @@ const Navbar = () => {
                     {/* Left Elements */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            {/* <LinkContainer to="/Home">
-                                <Nav.link>Home</Nav.link>
-                            </LinkContainer> */}
                             <a className="nav-link" href="/home">Home</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/classes">Classes</a>
-                            {/* <LinkContainer to="/Classes">
-                                <Nav.link>Classes</Nav.link>
-                            </LinkContainer> */}
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/activitylog">Activity Log</a>
-                            {/* <LinkContainer to="/ActivityLog">
-                                <Nav.link>Activity Log</Nav.link>
-                            </LinkContainer> */}
                         </li>
                     </ul>
 

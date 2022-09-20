@@ -3,65 +3,26 @@ import Navbar from "../components/Navbar";
 import "../styles/recentActivity.css";
 
 import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
-
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top' as const,
-        },
-        title: {
-            display: true,
-            text: 'Chart.js Bar Chart',
-        },
-    },
-};
-
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [0,1,2,3,2345,4,634,56,4657,4,657,468,453,45,6,56,7],
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-            label: 'Dataset 2',
-            data: [2356.345,6,456,75,,634,56,34,56,465,745,67,56,,545,7,7,86,7,876,8],
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
-};
+import BarChart from "../components/BarChart";
 
 function Home() {
     
     return (
         <div className="Home">
             <Navbar />
-            <div className="barChart">
-                <canvas id="myChart"></canvas>
+            <div className="charts">
+                <div>
+                    <BarChart />
+                </div>
+                <div>
+                    <BarChart />
+                </div>
+                <div>
+                    <BarChart />
+                </div>
+
             </div>
+            
             <div className="recentActivity">
                 <h3>Recent Activity</h3>
                 <table className="table">
