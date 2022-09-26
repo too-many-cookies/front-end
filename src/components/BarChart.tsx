@@ -49,6 +49,7 @@ const data = {
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top" as const,
@@ -63,6 +64,7 @@ const options = {
 const ChartWrapper = styled.div`
   max-width: 700px;
   margin: 0 auto;
+  height: 350px;
 `;
 
 const BarChart: React.FunctionComponent = () => {
