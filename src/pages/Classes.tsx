@@ -8,6 +8,7 @@ import "../styles/recentActivity.css";
 // Just some dummy data to populate the class table
 const classList: Array<ClassInfo> = [
   {
+    id: 1,
     name: "ISTE-120",
     days: "MWF",
     startTime: new Date(),
@@ -15,6 +16,7 @@ const classList: Array<ClassInfo> = [
     students: 30,
   },
   {
+    id: 2,
     name: "ISTE-121",
     days: "MWF",
     startTime: new Date(),
@@ -27,18 +29,20 @@ function Classes() {
   return (
     <div className="Classes">
       <Navbar />
-      <div className="charts">
-        <div>
-          <BarChart />
+      <div className="main">
+        <div className="charts">
+          <div>
+            <BarChart />
+          </div>
+          <div>
+            <BarChart />
+          </div>
+          <div>
+            <BarChart />
+          </div>
         </div>
-        <div>
-          <BarChart />
-        </div>
-        <div>
-          <BarChart />
-        </div>
+        <ClassTable list={classList} />
       </div>
-      <ClassTable list={classList} />
     </div>
   );
 }

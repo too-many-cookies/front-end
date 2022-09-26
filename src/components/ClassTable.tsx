@@ -3,7 +3,6 @@ import "../styles/classTable.css";
 import { ClassInfo, Classes } from "../interfaces";
 
 function ClassTable({ list }: Classes) {
-  console.log(list);
   return (
     <div className="classTable">
       <table className="table">
