@@ -22,3 +22,16 @@ export interface Student {
 export interface Students {
   list: Array<Student>;
 }
+
+export interface GraphData {
+  labels: Array<string>;
+  datasets: Array<Dataset>;
+}
+
+export interface Dataset {
+  label: string;
+  data: Array<number>;
+  backgroundColor?: Array<string>;
+  borderColor?: Array<string>;
+  borderWidth?: number;
+}

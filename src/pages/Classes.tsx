@@ -25,6 +25,30 @@ const classList: Array<ClassInfo> = [
   },
 ];
 
+// More dummy data
+const data1 = {
+  labels: ["9/26/22", "9/27/22", "9/28/22", "9/29/22", "9/30/22"],
+  datasets: [
+    {
+      label: "Successful Logins",
+      data: [1, 2, 3, 50, 13],
+      backgroundColor: ["#84BD00"],
+      borderColor: ["#84BD00"],
+    },
+  ],
+};
+const data2 = {
+  labels: ["9/26/22", "9/27/22", "9/28/22", "9/29/22", "9/30/22"],
+  datasets: [
+    {
+      label: "Failed Logins",
+      data: [0, 0, 12, 3, 4],
+      backgroundColor: ["#DA291C"],
+      borderColor: ["#DA291C"],
+    },
+  ],
+};
+
 function Classes() {
   return (
     <div className="Classes">
@@ -32,13 +56,10 @@ function Classes() {
       <div className="main">
         <div className="charts">
           <div>
-            <BarChart />
+            <BarChart {...data1} />
           </div>
           <div>
-            <BarChart />
-          </div>
-          <div>
-            <BarChart />
+            <BarChart {...data2} />
           </div>
         </div>
         <ClassTable list={classList} />
