@@ -8,7 +8,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
     BrowserRouter as Router,
-    Routes, 
+    Routes,
     Route
 } from "react-router-dom";
 
@@ -17,6 +17,7 @@ import { createRoot } from 'react-dom/client';
 import Classes from './pages/Classes';
 import ActivityLog from './pages/Activitylog';
 import Home from './pages/Home';
+import Login from "./pages/Login";
 
 const rootElement = document.getElementById("root") as HTMLBodyElement;
 createRoot(rootElement).render(
@@ -28,6 +29,7 @@ createRoot(rootElement).render(
                 <Route path="/home" element={<Home />}/>
                 <Route path="/classes" element={<Classes />}/>
                 <Route path="/activitylog" element={<ActivityLog />}/>
+                <Route path="/login" element={<Login />}/>
         </Routes>
     </Router>
   </React.StrictMode>
