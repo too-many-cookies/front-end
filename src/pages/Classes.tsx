@@ -4,6 +4,7 @@ import BarChart from "../components/BarChart";
 import ClassTable from "../components/ClassTable";
 import { ClassInfo } from "../interfaces";
 import "../styles/recentActivity.css";
+import {Navigate} from "react-router-dom";
 
 // Just some dummy data to populate the class table
 const classList: Array<ClassInfo> = [
@@ -50,22 +51,28 @@ const data2 = {
 };
 
 function Classes() {
-  return (
-    <div className="Classes">
-      <Navbar />
-      <div className="main">
-        <div className="charts">
-          <div>
-            <BarChart {...data1} />
-          </div>
-          <div>
-            <BarChart {...data2} />
+  const loggedIn = localStorage.getItem("authenticated");
+  if (!loggedIn) {
+    localStorage.setItem("page", "/classes");
+    return <Navigate to={"/login"}/>
+  } else {
+    return (
+        <div className="Classes">
+          <Navbar/>
+          <div className="main">
+            <div className="charts">
+              <div>
+                <BarChart {...data1}/>
+              </div>
+              <div>
+                <BarChart {...data2} />
+              </div>
+            </div>
+            <ClassTable list={classList}/>
           </div>
         </div>
-        <ClassTable list={classList} />
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Classes;

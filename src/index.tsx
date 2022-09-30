@@ -14,6 +14,7 @@ import Classes from "./pages/Classes";
 import Class from "./pages/Class";
 import ActivityLog from "./pages/Activitylog";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const rootElement = document.getElementById("root") as HTMLBodyElement;
 createRoot(rootElement).render(
@@ -26,6 +27,7 @@ createRoot(rootElement).render(
         <Route path="/classes" element={<Classes />} />
         <Route path="/classes/class/:id" element={<Class />} />
         <Route path="/activitylog" element={<ActivityLog />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   </React.StrictMode>
