@@ -1,5 +1,6 @@
 import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
+import { GraphData } from "../interfaces";
 
 import {
   Chart as ChartJS,
@@ -47,30 +48,29 @@ const data = {
   ],
 };
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart",
-    },
-  },
-};
-
 const ChartWrapper = styled.div`
   max-width: 700px;
   margin: 0 auto;
   height: 350px;
 `;
 
-const BarChart: React.FunctionComponent = () => {
+const BarChart = (graphData: GraphData, title: string) => {
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: false,
+        text: title,
+      },
+    },
+  };
   return (
     <ChartWrapper>
-      <Bar options={options} data={data} />
+      <Bar options={options} data={graphData} />
     </ChartWrapper>
   );
 };
