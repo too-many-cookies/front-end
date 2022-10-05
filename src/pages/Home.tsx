@@ -31,7 +31,6 @@ const data2 = {
 function Home() {
   return (
     <div className="Home">
-      <Navbar />
       <div className="main">
         <div className="charts">
           <div>
@@ -61,7 +60,27 @@ function Home() {
               <tr>
                 <td>3/28/2022, 03:38pm</td>
                 <td>jy8445</td>
-                <td>Upload Error</td>
+                <td>Login Error</td>
+              </tr>
+              <tr>
+                <td>3/28/2022, 03:38pm</td>
+                <td>jy8445</td>
+                <td>Login</td>
+              </tr>
+              <tr>
+                <td>3/28/2022, 03:30pm</td>
+                <td>jy8445</td>
+                <td>Login</td>
+              </tr>
+              <tr>
+                <td>3/28/2022, 02:25pm</td>
+                <td>jy8445</td>
+                <td>Login Error</td>
+              </tr>
+              <tr>
+                <td>3/28/2022, 02:12pm</td>
+                <td>jy8445</td>
+                <td>Login</td>
               </tr>
             </tbody>
           </table>

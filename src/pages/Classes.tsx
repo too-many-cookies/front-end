@@ -10,7 +10,7 @@ const classList: Array<ClassInfo> = [
   {
     id: 1,
     name: "ISTE-120",
-    days: "MWF",
+    days: "M | W | F",
     startTime: new Date(),
     endTime: new Date("December 17, 1995 03:24:00"),
     students: 30,
@@ -18,7 +18,31 @@ const classList: Array<ClassInfo> = [
   {
     id: 2,
     name: "ISTE-121",
-    days: "MWF",
+    days: "M | W | F",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 3,
+    name: "ISTE-121",
+    days: "T | TH",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 4,
+    name: "ISTE-120",
+    days: "T | TH",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 5,
+    name: "ISTE-121",
+    days: "M | W | F",
     startTime: new Date(),
     endTime: new Date("December 17, 1995 03:24:00"),
     students: 28,
@@ -52,7 +76,6 @@ const data2 = {
 function Classes() {
   return (
     <div className="Classes">
-      <Navbar />
       <div className="main">
         <div className="charts">
           <div>
@@ -62,6 +85,7 @@ function Classes() {
             <BarChart {...data2} />
           </div>
         </div>
+        <h3>Classes</h3>
         <ClassTable list={classList} />
       </div>
     </div>
