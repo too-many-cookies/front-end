@@ -18,13 +18,13 @@ import Home from "./pages/Home";
 const rootElement = document.getElementById("root") as HTMLBodyElement;
 createRoot(rootElement).render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/classes" element={<Classes />} />
-        <Route path="/classes/class/:id" element={<Class />} />
+        <Route path="/classes/:id" element={<Class />} />
         <Route path="/activitylog" element={<ActivityLog />} />
       </Routes>
     </Router>
