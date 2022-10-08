@@ -4,14 +4,13 @@ import BarChart from "../components/BarChart";
 import ClassTable from "../components/ClassTable";
 import { ClassInfo } from "../interfaces";
 import "../styles/recentActivity.css";
-import {Navigate} from "react-router-dom";
 
 // Just some dummy data to populate the class table
 const classList: Array<ClassInfo> = [
   {
     id: 1,
     name: "ISTE-120",
-    days: "MWF",
+    days: "M | W | F",
     startTime: new Date(),
     endTime: new Date("December 17, 1995 03:24:00"),
     students: 30,
@@ -19,7 +18,31 @@ const classList: Array<ClassInfo> = [
   {
     id: 2,
     name: "ISTE-121",
-    days: "MWF",
+    days: "M | W | F",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 3,
+    name: "ISTE-121",
+    days: "T | TH",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 4,
+    name: "ISTE-120",
+    days: "T | TH",
+    startTime: new Date(),
+    endTime: new Date("December 17, 1995 03:24:00"),
+    students: 28,
+  },
+  {
+    id: 5,
+    name: "ISTE-121",
+    days: "M | W | F",
     startTime: new Date(),
     endTime: new Date("December 17, 1995 03:24:00"),
     students: 28,
@@ -51,28 +74,22 @@ const data2 = {
 };
 
 function Classes() {
-  const loggedIn = localStorage.getItem("authenticated");
-  if (!loggedIn) {
-    localStorage.setItem("page", "/classes");
-    return <Navigate to={"/login"}/>
-  } else {
-    return (
-        <div className="Classes">
-          <Navbar/>
-          <div className="main">
-            <div className="charts">
-              <div>
-                <BarChart {...data1}/>
-              </div>
-              <div>
-                <BarChart {...data2} />
-              </div>
-            </div>
-            <ClassTable list={classList}/>
+  return (
+    <div className="Classes">
+      <div className="main">
+        <div className="charts">
+          <div>
+            <BarChart {...data1} />
+          </div>
+          <div>
+            <BarChart {...data2} />
           </div>
         </div>
-    );
-  }
+        <h3>Classes</h3>
+        <ClassTable list={classList} />
+      </div>
+    </div>
+  );
 }
 
 export default Classes;
