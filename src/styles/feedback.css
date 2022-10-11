@@ -1,0 +1,27 @@
+
+.feedbackForm{
+    width: 90%;
+    height: 450px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: large;
+    font-weight: 500;
+}
+
+.feedbackForm .header{
+    font-size: x-large;
+    padding-bottom: 25px;
+    font-weight: 500;
+}
+
+.feedbackForm label {
+    width: 115px;
+    height: 55px;
+    padding: 15px 20px;
+    font-size: large;
+    font-weight: 500;
+}
+
+.feedbackForm textarea{
+
+}

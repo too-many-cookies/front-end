@@ -34,7 +34,7 @@ const Navbar = () => {
                     <div className="d-flex align-items-center">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Feedback</a>
+                                <a className="nav-link" href="/feedback">Feedback</a>
                             </li>
                         </ul>
                     </div>
