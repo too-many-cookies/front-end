@@ -1,24 +1,25 @@
-body{
-    font-size: large;
-    font-weight: 500;
-}
 
-form{
+.loginForm{
     width: 80%;
     height: 450px;
     background-color: lightgray;
     margin: 20px auto;
     text-align: center;
     border-radius: 5px;
+    font-size: large;
+    font-weight: 500;
 }
 
-.header{
+.loginForm .header{
     font-size: x-large;
     padding-bottom: 25px;
+    font-weight: 500;
 }
 
-label {
+.loginForm label {
     width: 115px;
     height: 55px;
     padding: 15px 20px;
+    font-size: large;
+    font-weight: 500;
 }

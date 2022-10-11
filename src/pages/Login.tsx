@@ -1,8 +1,6 @@
-
 import "../styles/login.css";
 
-import React from 'react';
-import {useState} from "react";
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
 function Login() {
@@ -23,7 +21,7 @@ function Login() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className="loginForm" onSubmit={handleSubmit}>
                 <p className="header">RIT Login</p>
                 <div className="fields">
                     <label className="username">Username</label>
@@ -43,7 +41,7 @@ function Login() {
                 <input type="submit" value="Login" />
             </form>
         </div>
-);
+    );
 }
 
 export default Login;
