@@ -1,5 +1,5 @@
 
-import "../styles/recentActivity.css";
+import "../styles/login.css";
 
 import React from 'react';
 import {useState} from "react";
@@ -23,24 +23,27 @@ function Login() {
 
     return (
         <div>
-            <p>Welcome Back</p>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="Username"
-                    value={username}
-                    onChange={(e) => setusername(e.target.value)}
-                />
-                <input
-                    type="password"
-                    name="Password"
-                    onChange={(e) => setpassword(e.target.value)}
-                />
-                <input type="submit" value="Submit" />
+                <p className="header">RIT Login</p>
+                <div className="fields">
+                    <label className="username">Username</label>
+                    <input type="text" name="Username" value={username} onChange={(e) => setusername(e.target.value)} />
+
+                    <br />
+
+                    <label className="password">Password</label>
+                    <input type="password" name="Password" onChange={(e) => setpassword(e.target.value)} />
+
+                    <br />
+
+                </div>
+
+                <br />
+
+                <input type="submit" value="Login" />
             </form>
         </div>
 );
 }
-
 
 export default Login;
