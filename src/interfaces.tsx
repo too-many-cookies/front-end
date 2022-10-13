@@ -19,6 +19,10 @@ export interface RecentLog {
   timestamp: Date;
 }
 
+export interface LogTableProps {
+  logs: RecentLog[];
+}
+
 export interface Student {
   id: number;
   name: string;

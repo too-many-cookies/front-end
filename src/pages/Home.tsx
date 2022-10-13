@@ -7,6 +7,7 @@ import BarChart from "../components/BarChart";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { DayTotal, GraphData, RecentLog } from "../interfaces";
+import RecentLogTable from "../components/RecentLogTable";
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
@@ -64,6 +65,14 @@ function Home() {
     graph2 = <BarChart {...graphData[1]} />;
   }
 
+  let recentTable;
+  if (recentActivity.length > 0) {
+    const logsObj = {
+      logs: recentActivity,
+    };
+    recentTable = <RecentLogTable {...logsObj} />;
+  }
+
   const loggedIn = localStorage.getItem("authenticated");
   if (!loggedIn) {
     localStorage.setItem("page", "/home");
@@ -78,7 +87,8 @@ function Home() {
           </div>
           <div className="recentActivity">
             <h3>Recent Activity</h3>
-            <table className="table">
+            {recentTable}
+            {/* <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Date and Time</th>
@@ -118,7 +128,7 @@ function Home() {
                   <td>Login</td>
                 </tr>
               </tbody>
-            </table>
+            </table> */}
           </div>
         </div>
       </div>
