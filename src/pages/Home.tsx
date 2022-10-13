@@ -95,6 +95,4 @@ function Home() {
   }
 }
 
-//bar
-
 export default Home;
