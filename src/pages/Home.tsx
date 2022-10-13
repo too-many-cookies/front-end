@@ -88,47 +88,6 @@ function Home() {
           <div className="recentActivity">
             <h3>Recent Activity</h3>
             {recentTable}
-            {/* <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Date and Time</th>
-                  <th scope="col">User</th>
-                  <th scope="col">Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>3/28/2022, 04:41pm</td>
-                  <td>jy8445</td>
-                  <td>Login Error</td>
-                </tr>
-                <tr>
-                  <td>3/28/2022, 03:38pm</td>
-                  <td>jy8445</td>
-                  <td>Login Error</td>
-                </tr>
-                <tr>
-                  <td>3/28/2022, 03:38pm</td>
-                  <td>jy8445</td>
-                  <td>Login</td>
-                </tr>
-                <tr>
-                  <td>3/28/2022, 03:30pm</td>
-                  <td>jy8445</td>
-                  <td>Login</td>
-                </tr>
-                <tr>
-                  <td>3/28/2022, 02:25pm</td>
-                  <td>jy8445</td>
-                  <td>Login Error</td>
-                </tr>
-                <tr>
-                  <td>3/28/2022, 02:12pm</td>
-                  <td>jy8445</td>
-                  <td>Login</td>
-                </tr>
-              </tbody>
-            </table> */}
           </div>
         </div>
       </div>
