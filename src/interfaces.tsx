@@ -11,6 +11,14 @@ export interface Classes {
   list: Array<ClassInfo>;
 }
 
+export interface RecentLog {
+  log_id: number;
+  username: string;
+  successful: string;
+  student_id: number;
+  timestamp: Date;
+}
+
 export interface Student {
   id: number;
   name: string;
@@ -26,6 +34,12 @@ export interface Students {
 export interface GraphData {
   labels: Array<string>;
   datasets: Array<Dataset>;
+}
+
+export interface DayTotal {
+  day: string;
+  succesful: number;
+  failed: number;
 }
 
 export interface Dataset {
