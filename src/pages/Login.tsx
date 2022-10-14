@@ -4,6 +4,7 @@ import "../styles/login.css";
 import React from 'react';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 function Login() {
 
@@ -12,13 +13,30 @@ function Login() {
     const users = [{ username: "admin", password: "admin" }];
     const navigate = useNavigate();
     const page = localStorage.getItem("page");
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault()
-        const account = users.find((user) => user.username === username);
-        if (account && account.password === password) {
-            localStorage.setItem("authenticated", String(true));
-            navigate(""+page);
-        }
+        const response = await axios.post(
+            "/v1/login",
+            {
+                "username": username,
+                "password": password
+            }
+        )
+            .then((response) => {
+                    localStorage.setItem("user", response.data.message.user);
+                    localStorage.setItem("id", response.data.message.data.userId);
+                    localStorage.setItem("authenticated", String(true));
+                    if (page) {
+                        navigate("" + page);
+                    } else {
+                        navigate("/home");
+                    }
+                }
+            )
+            .catch((err) => {
+                    console.log(err);
+                }
+            );
     };
 
     return (
