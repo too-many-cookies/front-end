@@ -22,7 +22,7 @@ function Login() {
     return (
         <div>
             <form className="loginForm" onSubmit={handleSubmit}>
-                <p className="header">RIT Login</p>
+                <p className="header">Log into ISTE 501 Operational Analytics</p>
                 <div className="fields">
                     <label className="username">Username</label>
                     <input type="text" name="Username" value={username} onChange={(e) => setusername(e.target.value)} />
