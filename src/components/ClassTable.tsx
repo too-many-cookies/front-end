@@ -15,25 +15,22 @@ function ClassTable({ list }: Classes) {
         <thead>
           <tr>
             <th>Class</th>
-            <th>Days</th>
-            <th>Time</th>
+            <th>Section</th>
             <th># of Students</th>
+            <th>Logins</th>
           </tr>
         </thead>
         <tbody>
           {list.map((c, key) => (
             <tr
-              onClick={() => routeChange(c.id)}
+              onClick={() => routeChange(c.class_id)}
               className="class-row"
               key={key}
             >
               <td>{c.name}</td>
-              <td>{c.days}</td>
-              <td>
-                {c.startTime.toLocaleTimeString()} -{" "}
-                {c.endTime.toLocaleTimeString()}
-              </td>
-              <td>{c.students}</td>
+              <td>{`${c.class_code}.${c.class_section_number}`}</td>
+              <td>{c.total_student_count}</td>
+              <td>{c.student_signin_count}</td>
             </tr>
           ))}
         </tbody>

@@ -1,10 +1,10 @@
 export interface ClassInfo {
-  id: number;
+  class_id: number;
+  class_code: string;
+  class_section_number: number;
   name: string;
-  days: string;
-  startTime: Date;
-  endTime: Date;
-  students: number;
+  student_signin_count: number;
+  total_student_count: number;
 }
 
 export interface Classes {
