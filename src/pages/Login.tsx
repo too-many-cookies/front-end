@@ -10,7 +10,6 @@ function Login() {
 
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
-    const users = [{ username: "admin", password: "admin" }];
     const navigate = useNavigate();
     const page = localStorage.getItem("page");
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -24,7 +23,7 @@ function Login() {
         )
             .then((response) => {
                     localStorage.setItem("user", response.data.message.user);
-                    localStorage.setItem("id", response.data.message.data.userId);
+                    localStorage.setItem("id",   response.data.message.userId);
                     localStorage.setItem("authenticated", String(true));
                     if (page) {
                         navigate("" + page);
