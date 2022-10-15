@@ -13,7 +13,11 @@ export interface Classes {
 
 export interface ClassPageState {
   classInfo: ClassInfo;
-  recentLogs: RecentLog[];
+  graphData: {
+    success: GraphData;
+    failure: GraphData;
+    total: GraphData;
+  };
   students: Student[];
 }
 
@@ -23,6 +27,11 @@ export interface RecentLog {
   successful: string;
   student_id: number;
   timestamp: Date;
+}
+
+export interface LoginTotals {
+  successful: number;
+  failed: number;
 }
 
 export interface LogTableProps {

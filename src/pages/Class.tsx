@@ -7,6 +7,7 @@ import {
   GraphData,
   DayTotal,
   ClassPageState,
+  LoginTotals,
 } from "../interfaces";
 import axios from "axios";
 import StudentTable from "../components/StudentTable";
@@ -31,6 +32,20 @@ function createBarGraphData(days: DayTotal[], type: string) {
   return graph;
 }
 
+function createDonutGraphData(totals: LoginTotals) {
+  const graph = {
+    labels: Object.keys(totals),
+    datasets: [
+      {
+        label: "Total Logins",
+        data: [totals.successful, totals.failed],
+        backgroundColor: ["#84BD00", "#DA291C"],
+      },
+    ],
+  };
+  return graph;
+}
+
 function Class() {
   const { id } = useParams();
   const loggedIn = localStorage.getItem("authenticated");
@@ -48,12 +63,16 @@ function Class() {
 
       setClassData({
         classInfo: classInfo.data.message,
-        recentLogs: logins.data.message,
+        graphData: {
+          success: createBarGraphData(logins.data.message.days, "success"),
+          failure: createBarGraphData(logins.data.message.days, "failed"),
+          total: createDonutGraphData(logins.data.message.totals),
+        },
         students: classList.data.message,
       });
     };
     fetchData();
-  });
+  }, []);
 
   if (!loggedIn) {
     localStorage.setItem("page", "/classes");
@@ -61,7 +80,11 @@ function Class() {
   } else {
     let className;
     let classList;
-    if (classData.classInfo && classData.students) {
+    let successGraph;
+    let failureGraph;
+    let donut;
+
+    if (classData.classInfo && classData.students && classData.graphData) {
       className = (
         <h1>
           {classData.classInfo.name} - {classData.classInfo.class_code}.
@@ -69,17 +92,24 @@ function Class() {
         </h1>
       );
 
-      console.log(classData.students);
       const logsObj = {
         list: classData.students,
       };
       classList = <StudentTable {...logsObj} />;
+
+      successGraph = <BarChart {...classData.graphData.success} />;
+      failureGraph = <BarChart {...classData.graphData.failure} />;
+      donut = <Donut {...classData.graphData.total} />;
     }
     return (
       <div>
         <div className="main">
           {className}
-          <div className="charts"></div>
+          <div className="charts">
+            <div>{successGraph}</div>
+            <div>{failureGraph}</div>
+            <div>{donut}</div>
+          </div>
           {classList}
         </div>
       </div>
