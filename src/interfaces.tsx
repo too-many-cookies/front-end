@@ -11,6 +11,12 @@ export interface Classes {
   list: Array<ClassInfo>;
 }
 
+export interface ClassPageState {
+  classInfo: ClassInfo;
+  recentLogs: RecentLog[];
+  students: Student[];
+}
+
 export interface RecentLog {
   log_id: number;
   username: string;
@@ -24,11 +30,10 @@ export interface LogTableProps {
 }
 
 export interface Student {
-  id: number;
   name: string;
-  uName: string;
-  instantiated: boolean;
-  lastActivity: Date;
+  username: string;
+  password_changed: boolean;
+  last_sign_in: Date;
 }
 
 export interface Students {
