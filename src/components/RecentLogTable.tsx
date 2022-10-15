@@ -26,7 +26,7 @@ function RecentLogTable(logs: LogTableProps) {
             <tr>
               <td>{formatDate(log.timestamp)}</td>
               <td>{log.username}</td>
-              <td>{log.successful}</td>
+              <td>{log.successful ? "Successful Login" : "Failed Login"}</td>
             </tr>
           ))}
         </tbody>
