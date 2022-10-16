@@ -1,8 +1,7 @@
 
 import "../styles/login.css";
 
-import React from 'react';
-import {useState} from "react";
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
@@ -73,6 +72,7 @@ function Login() {
             <form className="loginForm" onSubmit={handleSubmit}>
                 <p className="header">Log into ISTE 501 Operational Analytics</p>
                 <div id="error">Login Failed <br /> Please check your credentials </div>
+
                 <div className="fields">
                     <label className="username">Username</label>
                     <input type="text" name="Username" value={username} onChange={(e) => setusername(e.target.value)} />
