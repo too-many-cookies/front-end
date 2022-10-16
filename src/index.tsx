@@ -15,6 +15,7 @@ import Class from "./pages/Class";
 import ActivityLog from "./pages/Activitylog";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Feedback from "./pages/Feedback";
 
 const rootElement = document.getElementById("root") as HTMLBodyElement;
 createRoot(rootElement).render(
@@ -27,6 +28,7 @@ createRoot(rootElement).render(
         <Route path="/classes" element={<Classes />} />
         <Route path="/classes/:id" element={<Class />} />
         <Route path="/activitylog" element={<ActivityLog />} />
+        <Route path="/feedback" element={<Feedback />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>

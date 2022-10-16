@@ -70,8 +70,8 @@ function Login() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <p className="header">RIT Login</p>
+            <form className="loginForm" onSubmit={handleSubmit}>
+                <p className="header">Log into ISTE 501 Operational Analytics</p>
                 <div id="error">Login Failed <br /> Please check your credentials </div>
                 <div className="fields">
                     <label className="username">Username</label>
@@ -91,7 +91,7 @@ function Login() {
                 <input type="submit" value="Login" />
             </form>
         </div>
-);
+    );
 }
 
 export default Login;
