@@ -11,6 +11,7 @@ function formatDate(timestamp: Date) {
 }
 
 function RecentLogTable(logs: LogTableProps) {
+  console.log(logs);
   return (
     <div className="classTable">
       <table className="table">
