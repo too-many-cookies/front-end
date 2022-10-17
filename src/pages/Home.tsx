@@ -41,7 +41,6 @@ function Home() {
     axios
       .post("/v1/logins", {
         professorID: 3,
-        dates: ["2022-10-10 00:00:00", "2022-10-14 00:00:00"],
       })
       .then((response) => {
         if (response.data.message) {

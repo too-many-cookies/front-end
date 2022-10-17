@@ -2,6 +2,17 @@ import React from "react";
 import "../styles/classTable.css";
 import { Students } from "../interfaces";
 
+function formatDate(date: Date) {
+  const datetime = new Date(date);
+  const day = datetime.toLocaleDateString();
+  const time = datetime.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return `${day} ${time}`;
+}
+
 function StudentTable({ list }: Students) {
   return (
     <div className="classTable">
@@ -21,8 +32,7 @@ function StudentTable({ list }: Students) {
               <td>{c.name}</td>
               <td>{c.username}</td>
               <td>{c.instantiated ? "YES" : "NO"}</td>
-              {/* This needs to be changed on the API */}
-              <td>{c.last_sign_in ? c.last_sign_in.toString() : "Null"}</td>
+              <td>{c.last_sign_in ? formatDate(c.last_sign_in) : "N/A"}</td>
             </tr>
           ))}
         </tbody>

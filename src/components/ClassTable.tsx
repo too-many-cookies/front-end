@@ -9,7 +9,6 @@ function ClassTable({ list }: Classes) {
     const path = `/classes/${id}`;
     navigate(path);
   };
-  console.log(list);
   return (
     <div className="classTable">
       <table className="table">
@@ -30,7 +29,6 @@ function ClassTable({ list }: Classes) {
             >
               <td>{c.name}</td>
               <td>{`${c.class_code}.${c.class_section_number}`}</td>
-              {/* These rows need to be calculated on the API still */}
               <td>{c.total_student_count}</td>
               <td>{c.students_instantiated}</td>
             </tr>

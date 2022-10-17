@@ -59,9 +59,7 @@ function Class() {
         professorID: localStorage.getItem("id"),
       });
       const classList = await axios.post(`/v1/students/${id}`);
-      const logins = await axios.post(`/v1/logins/${id}`, {
-        dates: ["2022-10-10 00:00:00", "2022-10-14 00:00:00"],
-      });
+      const logins = await axios.post(`/v1/logins/${id}`);
 
       console.log(classList);
       setClassData({

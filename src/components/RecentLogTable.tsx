@@ -5,13 +5,15 @@ import { LogTableProps, RecentLog } from "../interfaces";
 function formatDate(timestamp: Date) {
   const date = new Date(timestamp);
   const day = date.toLocaleDateString();
-  const time = date.toLocaleTimeString();
+  const time = date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-  return `${day}, ${time}`;
+  return `${day} ${time}`;
 }
 
 function RecentLogTable(logs: LogTableProps) {
-  console.log(logs);
   return (
     <div className="classTable">
       <table className="table">
@@ -27,7 +29,9 @@ function RecentLogTable(logs: LogTableProps) {
             <tr>
               <td>{formatDate(log.timestamp)}</td>
               <td>{log.username}</td>
-              <td>{log.successful ? "Successful Login" : "Failed Login"}</td>
+              <td>
+                {log.successful === "Y" ? "Successful Login" : "Failed Login"}
+              </td>
             </tr>
           ))}
         </tbody>
