@@ -51,7 +51,8 @@ const data = {
 const ChartWrapper = styled.div`
   max-width: 700px;
   margin: 0 auto;
-  height: 350px;
+  height: 375px;
+  width: 375px;
 `;
 
 const BarChart = (graphData: GraphData, title: string) => {

@@ -1,14 +1,24 @@
 export interface ClassInfo {
-  id: number;
+  class_id: number;
+  class_code: string;
+  class_section_number: number;
   name: string;
-  days: string;
-  startTime: Date;
-  endTime: Date;
-  students: number;
+  students_instantiated: number;
+  total_student_count: number;
 }
 
 export interface Classes {
   list: Array<ClassInfo>;
+}
+
+export interface ClassPageState {
+  classInfo: ClassInfo;
+  graphData: {
+    success: GraphData;
+    failure: GraphData;
+    total: GraphData;
+  };
+  students: Student[];
 }
 
 export interface RecentLog {
@@ -19,16 +29,20 @@ export interface RecentLog {
   timestamp: Date;
 }
 
+export interface LoginTotals {
+  successful: number;
+  failed: number;
+}
+
 export interface LogTableProps {
   logs: RecentLog[];
 }
 
 export interface Student {
-  id: number;
   name: string;
-  uName: string;
+  username: string;
   instantiated: boolean;
-  lastActivity: Date;
+  last_sign_in: Date;
 }
 
 export interface Students {

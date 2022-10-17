@@ -43,16 +43,19 @@ function Home() {
         professorID: 3,
       })
       .then((response) => {
-        setRecentActivity(response.data.message.recent);
-        const successGraph = createBarGraphData(
-          response.data.message.days,
-          "success"
-        );
-        const failureGraph = createBarGraphData(
-          response.data.message.days,
-          "failed"
-        );
-        setGraphData([successGraph, failureGraph]);
+        if (response.data.message) {
+          console.log(response.data);
+          setRecentActivity(response.data.message.recent);
+          const successGraph = createBarGraphData(
+            response.data.message.days,
+            "success"
+          );
+          const failureGraph = createBarGraphData(
+            response.data.message.days,
+            "failed"
+          );
+          setGraphData([successGraph, failureGraph]);
+        }
       })
       .catch((err) => {
         console.log(err);
