@@ -20,7 +20,7 @@ function StudentTable({ list }: Students) {
             <tr>
               <td>{c.name}</td>
               <td>{c.username}</td>
-              <td>{c.password_changed ? "YES" : "NO"}</td>
+              <td>{c.instantiated ? "YES" : "NO"}</td>
               {/* This needs to be changed on the API */}
               <td>{c.last_sign_in ? c.last_sign_in.toString() : "Null"}</td>
             </tr>

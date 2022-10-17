@@ -3,7 +3,7 @@ export interface ClassInfo {
   class_code: string;
   class_section_number: number;
   name: string;
-  student_signin_count: number;
+  students_instantiated: number;
   total_student_count: number;
 }
 
@@ -41,7 +41,7 @@ export interface LogTableProps {
 export interface Student {
   name: string;
   username: string;
-  password_changed: boolean;
+  instantiated: boolean;
   last_sign_in: Date;
 }
 

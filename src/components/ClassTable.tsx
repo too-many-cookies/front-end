@@ -18,7 +18,7 @@ function ClassTable({ list }: Classes) {
             <th>Class</th>
             <th>Section</th>
             <th># of Students</th>
-            <th>Logins</th>
+            <th>Students Instantiated</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@ function ClassTable({ list }: Classes) {
               <td>{`${c.class_code}.${c.class_section_number}`}</td>
               {/* These rows need to be calculated on the API still */}
               <td>{c.total_student_count}</td>
-              <td>{c.student_signin_count}</td>
+              <td>{c.students_instantiated}</td>
             </tr>
           ))}
         </tbody>
