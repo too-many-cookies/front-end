@@ -59,8 +59,11 @@ function Class() {
         professorID: localStorage.getItem("id"),
       });
       const classList = await axios.post(`/v1/students/${id}`);
-      const logins = await axios.post(`/v1/logins/${id}`);
+      const logins = await axios.post(`/v1/logins/${id}`, {
+        dates: ["2022-10-10 00:00:00", "2022-10-14 00:00:00"],
+      });
 
+      console.log(classList);
       setClassData({
         classInfo: classInfo.data.message,
         graphData: {
@@ -84,19 +87,23 @@ function Class() {
     let failureGraph;
     let donut;
 
-    if (classData.classInfo && classData.students && classData.graphData) {
+    if (classData.classInfo) {
       className = (
         <h1>
           {classData.classInfo.name} - {classData.classInfo.class_code}.
           {classData.classInfo.class_section_number}
         </h1>
       );
+    }
 
+    if (classData.students) {
       const logsObj = {
         list: classData.students,
       };
       classList = <StudentTable {...logsObj} />;
+    }
 
+    if (classData.graphData) {
       successGraph = <BarChart {...classData.graphData.success} />;
       failureGraph = <BarChart {...classData.graphData.failure} />;
       donut = <Donut {...classData.graphData.total} />;
