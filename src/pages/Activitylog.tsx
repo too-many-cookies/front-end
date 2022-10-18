@@ -21,7 +21,7 @@ import ActivityLogTable from "../components/ActivityLogTable";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 
 
-// axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
 function createDonutGraphData(totals: LoginTotals) {
     const graph = {
@@ -49,10 +49,27 @@ function ActivityLog() {
 
 
     React.useEffect(() => {
+        if(loggedIn) {
+            axios
+                .post("/v1/logins", {
+                    professorID: localStorage.getItem("id"),
+                })
+                .then((response) => {
+                if (response.data.message) {
+                    setRecentActivity(response.data.message.recent);
+                }
+        })
+        .catch((err) => {
+            console.log(err)
+        });
+    }
+        
         const fetchData = async () => {
             const logins = await axios.post(`/v1/logins/`, {
                 professorID: localStorage.getItem("id")
             });
+
+            
 
             // console.log(classList);
             setGraphData({
@@ -65,6 +82,7 @@ function ActivityLog() {
         };
         fetchData();
     }, []);
+
     
     if (!loggedIn) {
         localStorage.setItem("page", "/activitylog");
