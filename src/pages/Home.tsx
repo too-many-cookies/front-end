@@ -36,31 +36,34 @@ function Home() {
 
   const [graphData, setGraphData] = useState<GraphData[]>([] as GraphData[]);
 
-  // When the page renders, hit the API
-  React.useEffect(() => {
-    axios
-      .post("/v1/logins", {
-        professorID: 3,
-      })
-      .then((response) => {
-        if (response.data.message) {
-          console.log(response.data);
-          setRecentActivity(response.data.message.recent);
-          const successGraph = createBarGraphData(
-            response.data.message.days,
-            "success"
-          );
-          const failureGraph = createBarGraphData(
-            response.data.message.days,
-            "failed"
-          );
-          setGraphData([successGraph, failureGraph]);
+    const loggedIn = localStorage.getItem("authenticated");
+
+    // When the page renders, hit the API
+    React.useEffect(() => {
+        if (loggedIn) {
+            axios
+                .post("/v1/logins", {
+                    professorID: localStorage.getItem("id"),
+                })
+                .then((response) => {
+                    if (response.data.message) {
+                        setRecentActivity(response.data.message.recent);
+                        const successGraph = createBarGraphData(
+                            response.data.message.days,
+                            "success"
+                        );
+                        const failureGraph = createBarGraphData(
+                            response.data.message.days,
+                            "failed"
+                        );
+                        setGraphData([successGraph, failureGraph]);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    }, []);
 
   let graph1, graph2;
   if (graphData.length > 0) {
@@ -70,13 +73,16 @@ function Home() {
 
   let recentTable;
   if (recentActivity.length > 0) {
-    const logsObj = {
-      logs: recentActivity,
-    };
+    // const logsObj = {
+    //   logs: recentActivity,
+    // };
+      const logsObj = {
+          logs: recentActivity.slice(0, 5),
+      };
     recentTable = <RecentLogTable {...logsObj} />;
   }
 
-  const loggedIn = localStorage.getItem("authenticated");
+//   const loggedIn = localStorage.getItem("authenticated");
   if (!loggedIn) {
     localStorage.setItem("page", "/home");
     return <Navigate to={"/login"} />;

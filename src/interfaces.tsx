@@ -21,12 +21,31 @@ export interface ClassPageState {
   students: Student[];
 }
 
+export interface ActivityPageState {
+    graphData: {
+        total: GraphData;
+    }
+}
+
 export interface RecentLog {
   log_id: number;
   username: string;
   successful: string;
   student_id: number;
   timestamp: Date;
+}
+
+export interface Activity {
+    log_id: number;
+    name: string;
+    username: string;
+    successful: string;
+    student_id: number;
+    timestamp: Date;
+}
+
+export interface ActivityLogTableProps{
+    logs: Activity[];
 }
 
 export interface LoginTotals {
