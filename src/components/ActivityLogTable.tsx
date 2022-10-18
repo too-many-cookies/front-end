@@ -28,7 +28,7 @@ function ActivityLogTable(logs: ActivityLogTableProps) {
                 <tbody>
                     {logs.logs.map((log: Activity) => (
                         <tr>
-                            <td></td>
+                            <td>{log.name}</td>
                             <td>{log.username}</td>
                             <td>
                                 {log.successful === "Y" ? "Successful Login" : "Failed Login"}
