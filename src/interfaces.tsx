@@ -22,9 +22,9 @@ export interface ClassPageState {
 }
 
 export interface ActivityPageState {
-    graphData: {
-        total: GraphData;
-    }
+  graphData: {
+    total: GraphData;
+  };
 }
 
 export interface RecentLog {
@@ -36,16 +36,16 @@ export interface RecentLog {
 }
 
 export interface Activity {
-    log_id: number;
-    name: string;
-    username: string;
-    successful: string;
-    student_id: number;
-    timestamp: Date;
+  log_id: number;
+  name: string;
+  username: string;
+  successful: string;
+  student_id: number;
+  timestamp: Date;
 }
 
-export interface ActivityLogTableProps{
-    logs: Activity[];
+export interface ActivityLogTableProps {
+  logs: Activity[];
 }
 
 export interface LoginTotals {
@@ -75,7 +75,7 @@ export interface GraphData {
 
 export interface DayTotal {
   day: string;
-  succesful: number;
+  successful: number;
   failed: number;
 }
 
