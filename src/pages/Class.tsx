@@ -19,9 +19,9 @@ function createBarGraphData(days: DayTotal[], type: string) {
     labels: days.map((day: DayTotal) => day.day),
     datasets: [
       {
-        label: type === "success" ? "Succesful Logins" : "Failed Logins",
+        label: type === "success" ? "successful Logins" : "Failed Logins",
         data: days.map((day: DayTotal) =>
-          type === "success" ? day.succesful : day.failed
+          type === "success" ? day.successful : day.failed
         ),
         backgroundColor: type === "success" ? ["#84BD00"] : ["#DA291C"],
         borderColor: type === "success" ? ["#84BD00"] : ["#DA291C"],
