@@ -8,6 +8,7 @@ function formatDate(date: Date) {
   const time = datetime.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "UTC",
   });
 
   return `${day} ${time}`;
