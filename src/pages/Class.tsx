@@ -88,7 +88,7 @@ function Class() {
     if (classData.classInfo) {
       className = (
         <h1>
-          {classData.classInfo.name} - {classData.classInfo.class_code}.
+          {classData.classInfo.name} - {classData.classInfo.class_code.replace("-", ".")}.
           {classData.classInfo.class_section_number}
         </h1>
       );
