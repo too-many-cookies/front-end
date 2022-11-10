@@ -14,10 +14,11 @@ type TableClass = {
 
 function formatClasses(classes: Array<ClassInfo>) {
   return classes.map(c => {
+    const formattedClassCode = c.class_code.replace("-", ".")
     return {
       name: c.name,
       class_id: c.class_id,
-      class_section: `${c.class_code}.${c.class_section_number}`,
+      class_section: `${formattedClassCode}.${c.class_section_number}`,
       total_student_count: c.total_student_count,
       students_instantiated: c.students_instantiated
     }
