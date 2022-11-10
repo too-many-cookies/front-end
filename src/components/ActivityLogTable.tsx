@@ -1,11 +1,28 @@
 import React from "react";
 import "../styles/classTable.css";
 import {
-  LogTableProps,
-  RecentLog,
-  Activity,
   ActivityLogTableProps,
 } from "../interfaces";
+import DataTable from 'react-data-table-component';
+
+
+type TableActivity = {
+  timestamp: string
+  username: string
+  type: string
+  name: string
+}
+
+function formatActivity(logs: ActivityLogTableProps) {
+  return logs.logs.map(l => {
+    return {
+      timestamp: formatDate(l.timestamp),
+      username: l.username,
+      type: l.successful === "Y" ? "Successful Login" : "Failed Login",
+      name: l.name
+    }
+  })
+}
 
 function formatDate(timestamp: Date) {
   const date = new Date(timestamp);
@@ -20,30 +37,47 @@ function formatDate(timestamp: Date) {
 }
 
 function ActivityLogTable(logs: ActivityLogTableProps) {
+  const columns = [
+    {
+      name: "Student",
+      selector: (row: TableActivity) => row.name,
+      sortable: true
+    },
+    {
+      name: "ID",
+      selector: (row: TableActivity) => row.username,
+      sortable: true
+    },
+    {
+      name: "Action",
+      selector: (row: TableActivity) => row.type,
+      sortable: true
+    },
+    {
+      name: "Date & Time",
+      selector: (row: TableActivity) => row.timestamp,
+      sortFunction: (a: TableActivity, b: TableActivity) => {
+        const d1 = new Date(a.timestamp)
+        const d2 = new Date(b.timestamp)
+
+        if (d1 < d2) {
+          return -1
+        }
+    
+        if (d1 > d2) {
+          return 1
+        }
+    
+        return 0
+      },
+      sortable: true,
+    }
+  ]
+  const data = formatActivity(logs)
   return (
+
     <div className="classTable">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Student</th>
-            <th>ID</th>
-            <th>Action</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {logs.logs.map((log: Activity) => (
-            <tr>
-              <td>{log.name}</td>
-              <td>{log.username}</td>
-              <td>
-                {log.successful === "Y" ? "Successful Login" : "Failed Login"}
-              </td>
-              <td>{formatDate(log.timestamp)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <DataTable columns={columns} data={data} pagination />
     </div>
   );
 }
