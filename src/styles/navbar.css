@@ -6,3 +6,15 @@
 .nav-link {
   color: white;
 }
+
+.feedback{
+  padding: 0em 1em;
+}
+
+.dropdown FaBell{
+  color: white
+}
+
+.notificationIcon{
+  background-color: white;
+}

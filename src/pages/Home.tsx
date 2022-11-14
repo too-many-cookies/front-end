@@ -90,6 +90,7 @@ function Home() {
             <div>{graph1}</div>
             <div>{graph2}</div>
           </div>
+          
           <div className="recentActivity">
             <h3>Recent Activity</h3>
             {recentTable}
