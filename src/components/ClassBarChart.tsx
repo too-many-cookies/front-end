@@ -25,20 +25,23 @@ const ChartWrapper = styled.div`
   max-width: 700px;
   margin: 0 auto;
   height: 375px;
-  width: 375px;
+  width: 700px;
 `;
 
-const BarChart = (graphData: GraphData, title: string) => {
+const ClassBarChart = (graphData: GraphData) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "right" as const,
       },
       title: {
-        display: false,
-        text: title,
+        display: true,
+        text: "Failed Logins Per Class",
+        font: {
+          size: 20
+        }
       },
     },
   };
@@ -50,4 +53,4 @@ const BarChart = (graphData: GraphData, title: string) => {
   );
 };
 
-export default BarChart;
+export default ClassBarChart;

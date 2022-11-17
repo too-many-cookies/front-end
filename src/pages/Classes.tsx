@@ -1,27 +1,34 @@
 import React, { useState } from "react";
-import BarChart from "../components/BarChart";
+import ClassBarChart from "../components/ClassBarChart";
 import ClassTable from "../components/ClassTable";
-import { ClassInfo, GraphData, DayTotal } from "../interfaces";
+import { ClassInfo, GraphData, ClassLogins, Dataset } from "../interfaces";
 import axios from "axios";
 import "../styles/recentActivity.css";
 import { Navigate } from "react-router-dom";
+import { title } from "process";
 
-function createBarGraphData(days: DayTotal[], type: string) {
-  const graph = {
-    labels: days.map((day: DayTotal) => day.day),
-    datasets: [
-      {
-        label: type === "success" ? "successful Logins" : "Failed Logins",
-        data: days.map((day: DayTotal) =>
-          type === "success" ? day.successful : day.failed
-        ),
-        backgroundColor: type === "success" ? ["#84BD00"] : ["#DA291C"],
-        borderColor: type === "success" ? ["#84BD00"] : ["#DA291C"],
-      },
-    ],
-  };
+function createBarGraphData(logins: ClassLogins[]) {
+  const colors = [
+    '#84BD00',
+    '#009CBD',
+    '#DA291C',
+    '#7D55C7',
+    '#F6BE00'
+  ]
 
-  return graph;
+  const graph: GraphData = {
+    labels: logins[0].days.map((day) => day.day),
+    datasets: logins.map((loginDay, index) => {
+      const complexDataset: Dataset = {
+        label: loginDay.classSection,
+        data: loginDay.days.map((day) => day.failed),
+        backgroundColor: [colors[index]]
+      }
+      return complexDataset
+    })
+  }
+
+  return [graph];
 }
 
 function Classes() {
@@ -36,22 +43,16 @@ function Classes() {
           professorID: localStorage.getItem("id"),
         })
         .then((response) => {
+          console.log(response.data.message)
           setClasses(response.data.message);
 
           axios
-            .post("/v1/logins", {
+            .post("/v1/classes/logins", {
               professorID: localStorage.getItem("id"),
             })
             .then((response2) => {
-              const successGraph = createBarGraphData(
-                response2.data.message.days,
-                "success"
-              );
-              const failureGraph = createBarGraphData(
-                response2.data.message.days,
-                "failed"
-              );
-              setGraphData([successGraph, failureGraph]);
+              const failureGraph = createBarGraphData(response2.data.message)
+              setGraphData(failureGraph)
             })
             .catch((err) => {
               console.log(err);
@@ -67,10 +68,9 @@ function Classes() {
     localStorage.setItem("page", "/classes");
     return <Navigate to={"/login"} />;
   } else {
-    let graph1, graph2;
+    let graph;
     if (graphData.length > 0) {
-      graph1 = <BarChart {...graphData[0]} />;
-      graph2 = <BarChart {...graphData[1]} />;
+      graph = <ClassBarChart {...graphData[0]} />;
     }
 
     let classTable;
@@ -82,8 +82,7 @@ function Classes() {
       <div className="Classes">
         <div className="main">
           <div className="charts">
-            <div>{graph1}</div>
-            <div>{graph2}</div>
+            <div>{graph}</div>
           </div>
           <h3>Classes</h3>
           {classTable}

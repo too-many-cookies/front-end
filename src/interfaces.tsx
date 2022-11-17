@@ -79,6 +79,11 @@ export interface DayTotal {
   failed: number;
 }
 
+export interface ClassLogins {
+  classSection: string;
+  days: DayTotal[];
+}
+
 export interface Dataset {
   label: string;
   data: Array<number>;
