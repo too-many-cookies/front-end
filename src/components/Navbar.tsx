@@ -33,7 +33,7 @@ const Navbar = () => {
             timeZone: "UTC",
         });
 
-        return `${day} ${time}`;
+        return `${day}`;
     }
 
     return (
