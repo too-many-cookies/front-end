@@ -91,3 +91,11 @@ export interface Dataset {
   borderColor?: Array<string>;
   borderWidth?: number;
 }
+
+export interface NotificationInfo {
+  id: number;
+  username: string;
+  date: Date;
+  failed_count: number;
+  read_flag: string;
+}

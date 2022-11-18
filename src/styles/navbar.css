@@ -6,3 +6,34 @@
 .nav-link {
   color: white;
 }
+
+.feedback{
+  padding: 0em 1em;
+}
+
+.notificationIcon{
+  color: white;
+}
+
+.btn-group{
+  max-width: 500px;
+}
+
+.dropdown-menu{
+  min-width: 225px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* wrap dropdown item text to not overflow */
+.dropdown-item {
+  white-space: pre-wrap;
+  font-size: .80em;
+}
+
+.notification_date{
+  color: rgb(224, 111, 45);
+  padding: 0;
+}
+
+
