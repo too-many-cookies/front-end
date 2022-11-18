@@ -13,6 +13,7 @@ import axios from "axios";
 import StudentTable from "../components/StudentTable";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 function createBarGraphData(days: DayTotal[], type: string) {
   const graph = {
@@ -48,7 +49,7 @@ function createDonutGraphData(totals: LoginTotals) {
 
 function Class() {
   const { id } = useParams();
-  const loggedIn = localStorage.getItem("authenticated");
+  const loggedIn = Cookies.get("authenticated");
   const [classData, setClassData] = useState<ClassPageState>(
     {} as ClassPageState
   );

@@ -19,6 +19,7 @@ import {
 import RecentLogTable from "../components/RecentLogTable";
 import ActivityLogTable from "../components/ActivityLogTable";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -39,7 +40,7 @@ function createDonutGraphData(totals: LoginTotals) {
 
 function ActivityLog() {
     // const { id } = localStorage.getItem('id');
-    const loggedIn = localStorage.getItem("authenticated");
+    const loggedIn = Cookies.get("authenticated");
     const [recentActivity, setRecentActivity] = useState<Activity[]>(
         [] as Activity[]
     );

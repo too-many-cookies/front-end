@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { DayTotal, GraphData, RecentLog } from "../interfaces";
 import RecentLogTable from "../components/RecentLogTable";
+import Cookies from "js-cookie";
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
@@ -36,7 +37,7 @@ function Home() {
 
   const [graphData, setGraphData] = useState<GraphData[]>([] as GraphData[]);
 
-  const loggedIn = localStorage.getItem("authenticated");
+  const loggedIn = Cookies.get("authenticated");
 
   // When the page renders, hit the API
   React.useEffect(() => {

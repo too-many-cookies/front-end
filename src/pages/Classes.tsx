@@ -6,6 +6,7 @@ import axios from "axios";
 import "../styles/recentActivity.css";
 import { Navigate } from "react-router-dom";
 import { title } from "process";
+import Cookies from 'js-cookie';
 
 function createBarGraphData(logins: ClassLogins[]) {
   const colors = [
@@ -32,7 +33,7 @@ function createBarGraphData(logins: ClassLogins[]) {
 }
 
 function Classes() {
-  const loggedIn = localStorage.getItem("authenticated");
+  const loggedIn = Cookies.get("authenticated");
   const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
   const [graphData, setGraphData] = useState<GraphData[]>([] as GraphData[]);
 

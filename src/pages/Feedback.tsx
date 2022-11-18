@@ -2,9 +2,10 @@ import Navbar from "../components/Navbar";
 import React, {useState} from "react";
 import {Navigate} from "react-router-dom";
 import "../styles/feedback.css";
+import Cookies from 'js-cookie';
 
 function Feedback() {
-    const loggedIn = localStorage.getItem("authenticated");
+    const loggedIn = Cookies.get("authenticated");
     const [subject, setsubject] = useState("");
     const [feedback, setfeedback] = useState("");
 
