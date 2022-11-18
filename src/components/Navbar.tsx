@@ -1,9 +1,41 @@
-import React from "react";
 import "../styles/navbar.css"
-// import BellIcon from 'react-bell-icon';
 import { FaBell } from "react-icons/fa";
+import axios from "axios";
+import React, { useState } from "react";
+import { NotificationInfo } from "../interfaces";
 
 const Navbar = () => {
+    const loggedIn = localStorage.getItem("authenticated");
+    const [notifications, setNotifications] = useState<NotificationInfo[]>([] as NotificationInfo[]);
+
+    React.useEffect(() => {
+        if (loggedIn) {
+            axios
+                .post("/v1/notifications", {
+                    professorID: localStorage.getItem("id"),
+                })
+                .then((response) => {
+                    console.log(response.data.message)
+                    setNotifications(response.data.message);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, []);
+
+    function formatDate(timestamp: Date) {
+        const date = new Date(timestamp);
+        const day = date.toLocaleDateString();
+        const time = date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "UTC",
+        });
+
+        return `${day} ${time}`;
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container fluid">
@@ -32,36 +64,38 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <div className="dropdown">
-                        <a className="hidden-arrow iconClass" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div className="notifcationIcon">
-                                <FaBell/>
-                            </div>
-                            
-                            <span className="position-absolute top-0 right-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
-                        </a>
-                        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a className="dropdown-item" href="#">Some news</a>
-                            </li>
-                            <li>
-                                <a className="dropdown-item" href="#">Another news</a>
-                            </li>
-                            <li>
-                                <a className="dropdown-item" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-
                     {/* Right Element */}
-                    <div className="d-flex align-items-center feedback">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/feedback">Feedback</a>
-                            </li>
-                        </ul>
+                    <div className="d-flex align-items-center ">
+                        <div className="btn-group">
+                            <a className="hidden-arrow iconClass" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <FaBell className="notificationIcon"/>
+                                </div>
+                                <span className="position-absolute top-0 right-0 start-100 translate-middle badge rounded-pill bg-black">{notifications.length}</span>
+                            </a>
+
+                            <div className="dropdown-menu dropdown-menu-center">
+                                <h5 className="p-2">Notifications</h5>
+                                <div className="dropdown-divider"></div>
+                                {notifications.map((notification, index) => (
+                                    <div className="dropdown-item overflow-scroll">
+                                        <p>
+                                            <b>{notification.username}</b> is having trouble signing in with {notification.failed_count} failed login attempts
+                                        </p>
+                                        <p className="notification_date">{formatDate(notification.date)}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        <div className="feedback">
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/feedback">Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
