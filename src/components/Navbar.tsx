@@ -3,6 +3,7 @@ import { FaBell } from "react-icons/fa";
 import axios from "axios";
 import React, { useState } from "react";
 import { NotificationInfo } from "../interfaces";
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
     const loggedIn = localStorage.getItem("authenticated");
@@ -34,6 +35,14 @@ const Navbar = () => {
         });
 
         return `${day}`;
+    }
+    const logOut = () => {
+        Cookies.remove("admin");
+        Cookies.remove("authenticated");
+        Cookies.remove("user");
+        localStorage.removeItem('user');
+        localStorage.removeItem('id');
+        localStorage.removeItem('page');
     }
 
     return (
@@ -95,6 +104,10 @@ const Navbar = () => {
                                     <a className="nav-link" href="/feedback">Feedback</a>
                                 </li>
                             </ul>
+                        </div>
+
+                        <div className="logOut">
+                            <button onClick={logOut}><a href="/login" style={{textDecoration: 'none', color: 'inherit'}}>Log Out</a></button>
                         </div>
                     </div>
                 </div>
