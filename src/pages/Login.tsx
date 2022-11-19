@@ -25,9 +25,12 @@ function Login() {
             .then((response) => {
                     Cookies.set('user', response.data.message.user, {expires: .5});
                     Cookies.set('authenticated', String(true), {expires: .5});
-                    if(response.data.message.admin === "Y") {
-                        Cookies.set('admin', String(true), {expires: .5});
-                    }else{Cookies.set('admin', String(false),{expires: .5});}
+                if(response.data.message.admin === "Y") {
+                    Cookies.set('admin', String(true), {expires: .5});
+                }
+                else {
+                    Cookies.set('admin', String(false),{expires: .5});
+                }
                     localStorage.setItem("user", response.data.message.user);
                     localStorage.setItem("id",   response.data.message.userId);
                     console.log(response);
