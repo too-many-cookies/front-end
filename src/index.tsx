@@ -20,8 +20,9 @@ import Feedback from "./pages/Feedback";
 const rootElement = document.getElementById("root") as HTMLBodyElement;
 createRoot(rootElement).render(
   <React.StrictMode>
-    <App />
+    
     <Router>
+      <App />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
