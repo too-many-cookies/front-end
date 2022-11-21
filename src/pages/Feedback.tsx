@@ -57,6 +57,7 @@ function Feedback() {
                 }).catch((err) => console.log(err));
             return(
               <div id={"feedbackValues"}>
+                <Navbar />
                   <h1>Feedback Received</h1>
                   {feedbackData.map((info) => (
                           <div>{info.name} : {info.feedback}</div>
