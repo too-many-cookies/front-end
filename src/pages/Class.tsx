@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import BarChart from "../components/BarChart";
 import Donut from "../components/DonutChart";
+import Navbar from "../components/Navbar";
 import {
-  Student,
-  ClassInfo,
-  GraphData,
   DayTotal,
   ClassPageState,
   LoginTotals,
@@ -109,6 +107,7 @@ function Class() {
     }
     return (
       <div>
+       <Navbar />
         <div className="main">
           {className}
           <div className="charts">

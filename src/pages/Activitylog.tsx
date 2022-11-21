@@ -45,14 +45,15 @@ function ActivityLog() {
         [] as Activity[]
     );
     const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
-
+    const admin = Cookies.get("admin")
     const [graphData, setGraphData] = useState<ActivityPageState>( {} as ActivityPageState);
 
 
     React.useEffect(() => {
+        const loginsRoute = admin === "true" ? "/v1/admin/logins" : "/v1/logins"
         if(loggedIn) {
             axios
-                .post("/v1/logins", {
+                .post(loginsRoute, {
                     professorID: localStorage.getItem("id"),
                 })
                 .then((response) => {
@@ -103,6 +104,7 @@ function ActivityLog() {
         }
         return (
             <div className="ActivityLog">
+               <Navbar />
                 <div className="main">
                     <h3>Activity Log</h3>
                     <div className="charts">

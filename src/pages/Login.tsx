@@ -1,6 +1,7 @@
 import "../styles/login.css";
 
 import React, {useState} from 'react';
+import Navbar from "../components/Navbar";
 import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -48,6 +49,8 @@ function Login() {
                 document.getElementById("error").style.display = "block";
                 return(
                     <div>
+                       <Navbar />
+
                         <form onSubmit={handleSubmit}>
                             <p className="header">RIT Login</p>
                             <div id="error">Login Failed <br /> Please check your credentials </div>
@@ -76,6 +79,8 @@ function Login() {
 
     return (
         <div>
+            <Navbar />
+
             <form className="loginForm" onSubmit={handleSubmit}>
                 <p className="header">Log into ISTE 501 Operational Analytics</p>
                 <div id="error">Login Failed <br /> Please check your credentials </div>

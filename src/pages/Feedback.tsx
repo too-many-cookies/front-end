@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Navigate} from "react-router-dom";
 import "../styles/feedback.css";
 import Cookies from 'js-cookie';
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import {FeedbackInfo} from "../interfaces";
 
@@ -32,6 +33,7 @@ function Feedback() {
             };
             return (
                 <div>
+                    <Navbar />
                     <form className="feedbackForm" onSubmit={handleSubmit}>
                             <label className="header">Feedback</label>
                         <br/>
