@@ -99,3 +99,10 @@ export interface NotificationInfo {
   failed_count: number;
   read_flag: string;
 }
+
+export interface FeedbackInfo {
+  id: number;
+  name: string;
+  feedback: number;
+  timestamp: Date;
+}

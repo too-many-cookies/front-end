@@ -1,7 +1,9 @@
 import "../styles/login.css";
 
 import React, {useState} from 'react';
+import Navbar from "../components/Navbar";
 import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
 import axios from "axios";
 
 function Login() {
@@ -22,10 +24,17 @@ function Login() {
             }
         )
             .then((response) => {
+                    Cookies.set('user', response.data.message.user, {expires: .5});
+                    Cookies.set('authenticated', String(true), {expires: .5});
+                if(response.data.message.admin === "Y") {
+                    Cookies.set('admin', String(true), {expires: .5});
+                }
+                else {
+                    Cookies.set('admin', String(false),{expires: .5});
+                }
                     localStorage.setItem("user", response.data.message.user);
                     localStorage.setItem("id",   response.data.message.userId);
-                    // document.cookie = "authenticated=true; expires="+d;
-                    localStorage.setItem("authenticated", String(true));
+                    console.log(response);
                     if (page) {
                         navigate("" + page);
                     } else {
@@ -40,6 +49,8 @@ function Login() {
                 document.getElementById("error").style.display = "block";
                 return(
                     <div>
+                       <Navbar />
+
                         <form onSubmit={handleSubmit}>
                             <p className="header">RIT Login</p>
                             <div id="error">Login Failed <br /> Please check your credentials </div>
@@ -68,6 +79,8 @@ function Login() {
 
     return (
         <div>
+            <Navbar />
+
             <form className="loginForm" onSubmit={handleSubmit}>
                 <p className="header">Log into ISTE 501 Operational Analytics</p>
                 <div id="error">Login Failed <br /> Please check your credentials </div>

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import BarChart from "../components/BarChart";
 import Donut from "../components/DonutChart";
+import Navbar from "../components/Navbar";
 import {
-  Student,
-  ClassInfo,
-  GraphData,
   DayTotal,
   ClassPageState,
   LoginTotals,
@@ -13,6 +11,7 @@ import axios from "axios";
 import StudentTable from "../components/StudentTable";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 function createBarGraphData(days: DayTotal[], type: string) {
   const graph = {
@@ -48,7 +47,7 @@ function createDonutGraphData(totals: LoginTotals) {
 
 function Class() {
   const { id } = useParams();
-  const loggedIn = localStorage.getItem("authenticated");
+  const loggedIn = Cookies.get("authenticated");
   const [classData, setClassData] = useState<ClassPageState>(
     {} as ClassPageState
   );
@@ -108,6 +107,7 @@ function Class() {
     }
     return (
       <div>
+       <Navbar />
         <div className="main">
           {className}
           <div className="charts">
