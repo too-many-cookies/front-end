@@ -19,6 +19,7 @@ import {
 import RecentLogTable from "../components/RecentLogTable";
 import ActivityLogTable from "../components/ActivityLogTable";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -39,19 +40,20 @@ function createDonutGraphData(totals: LoginTotals) {
 
 function ActivityLog() {
     // const { id } = localStorage.getItem('id');
-    const loggedIn = localStorage.getItem("authenticated");
+    const loggedIn = Cookies.get("authenticated");
     const [recentActivity, setRecentActivity] = useState<Activity[]>(
         [] as Activity[]
     );
     const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
-
+    const admin = Cookies.get("admin")
     const [graphData, setGraphData] = useState<ActivityPageState>( {} as ActivityPageState);
 
 
     React.useEffect(() => {
+        const loginsRoute = admin === "true" ? "/v1/admin/logins" : "/v1/logins"
         if(loggedIn) {
             axios
-                .post("/v1/logins", {
+                .post(loginsRoute, {
                     professorID: localStorage.getItem("id"),
                 })
                 .then((response) => {
@@ -102,6 +104,7 @@ function ActivityLog() {
         }
         return (
             <div className="ActivityLog">
+               <Navbar />
                 <div className="main">
                     <h3>Activity Log</h3>
                     <div className="charts">

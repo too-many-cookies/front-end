@@ -5,7 +5,8 @@ import { ClassInfo, GraphData, ClassLogins, Dataset } from "../interfaces";
 import axios from "axios";
 import "../styles/recentActivity.css";
 import { Navigate } from "react-router-dom";
-import { title } from "process";
+import Cookies from 'js-cookie';
+import Navbar from "../components/Navbar";
 
 function createBarGraphData(logins: ClassLogins[]) {
   const colors = [
@@ -32,7 +33,7 @@ function createBarGraphData(logins: ClassLogins[]) {
 }
 
 function Classes() {
-  const loggedIn = localStorage.getItem("authenticated");
+  const loggedIn = Cookies.get("authenticated");
   const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
   const [graphData, setGraphData] = useState<GraphData[]>([] as GraphData[]);
 
@@ -80,6 +81,8 @@ function Classes() {
 
     return (
       <div className="Classes">
+       <Navbar />
+
         <div className="main">
           <div className="charts">
             <div>{graph}</div>

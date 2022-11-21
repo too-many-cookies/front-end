@@ -42,7 +42,7 @@ const BarChart = (graphData: GraphData, title: string) => {
       },
     },
   };
-  console.log(graphData)
+
   return (
     <ChartWrapper>
       <Bar options={options} datasetIdKey='label' data={graphData} />
