@@ -22,6 +22,7 @@ const Navbar = () => {
 
     const loginScreen = window.location.href.includes("login")
     React.useEffect(() => {
+        const classRoutes = admin === "true" ? "/v1/admin/classes" : "/v1/classes"
         if (loggedIn) {
             axios
                 .post("/v1/notifications", {
@@ -35,7 +36,7 @@ const Navbar = () => {
                     console.log(err);
                 });
             axios
-                .post("/v1/classes", {
+                .post(classRoutes, {
                     professorID: localStorage.getItem("id"),
                 })
                 .then((response) => {
@@ -105,7 +106,7 @@ const Navbar = () => {
                             {admin === "true" &&
                                 <div className="dropdown">
                                     <li className="nav-item dropdown">
-                                        <p className="nav-link">Classes</p>
+                                        <a  href="/classes/" className="nav-link dis">Classes</a>
                                     </li>
                                     <div className="dropdown-menu">
                                     {classes.map((thisClass, index) => (
