@@ -1,46 +1,70 @@
-import Navbar from "../components/Navbar";
 import React, {useState} from "react";
 import {Navigate} from "react-router-dom";
 import "../styles/feedback.css";
+import Cookies from 'js-cookie';
+import Navbar from "../components/Navbar";
+import axios from "axios";
+import {FeedbackInfo} from "../interfaces";
 
 function Feedback() {
-    const loggedIn = localStorage.getItem("authenticated");
-    const [subject, setsubject] = useState("");
+    const loggedIn = Cookies.get("authenticated");
     const [feedback, setfeedback] = useState("");
-
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
-
-    };
-
+    const [feedbackData, setFeedbackData] = useState<FeedbackInfo[]>([] as FeedbackInfo[]);
+    const isAdmin = Cookies.get("admin");
     if (!loggedIn) {
         localStorage.setItem("page", "/feedback");
         return <Navigate to={"/login"}/>
     }
     else {
-        return (
-            <div>
-                <form className="feedbackForm" onSubmit={handleSubmit}>
-                    <p className="header">Feedback</p>
-                    <div className="fields">
-                        <label className="subject">Subject</label>
-                        <input type="text" name="Subject" value={subject} onChange={(e) => setsubject(e.target.value)} />
+        if(isAdmin === 'false') {
+            const handleSubmit = (e: { preventDefault: () => void; }) => {
+                e.preventDefault();
+                const response = axios.post(
+                    "/v1/feedback",
+                    {
+                        "professorID" : localStorage.getItem("id"),
+                        "feedback" : feedback
+                    }
+                ).then(() => {
+                    alert("Thank you for your feedback!");
+                    // @ts-ignore
+                    window.location = "/home";
+                });
+            };
+            return (
+                <div>
+                    <Navbar />
+                    <form className="feedbackForm" onSubmit={handleSubmit}>
+                            <label className="header">Feedback</label>
+                        <br/>
+                        <textarea name="Feedback" value={feedback}
+                                  onChange={(e) => setfeedback(e.target.value)}
+                                  placeholder="Leave your feedback for the site here..."
+                        />
+                            <br/>
 
-                        <br />
-
-                        <label className="feedback">Feedback
-                            <textarea name="Feedback" value={feedback} onChange={(e) => setfeedback(e.target.value)} />
-                        </label>
-                        <br />
-
-                    </div>
-
-                    <br />
-
-                    <input type="submit" value="Send Feedback" />
-                </form>
-            </div>
-        );
+                        <input type="submit" value="Send Feedback"/>
+                    </form>
+                </div>
+            );
+        }
+        else{
+            const feedback = axios.get(
+                    "/v1/feedback"
+                ).then((response) => {
+                    const info = response.data.message;
+                    setFeedbackData(info);
+                }).catch((err) => console.log(err));
+            return(
+              <div id={"feedbackValues"}>
+                  <h1>Feedback Received</h1>
+                  {feedbackData.map((info) => (
+                          <div>{info.name} : {info.feedback}</div>
+                      )
+                  )}
+              </div>
+            );
+        }
     }
 }
 

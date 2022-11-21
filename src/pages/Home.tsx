@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { DayTotal, GraphData, RecentLog } from "../interfaces";
 import RecentLogTable from "../components/RecentLogTable";
+import Cookies from "js-cookie";
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
@@ -35,14 +36,15 @@ function Home() {
   );
 
   const [graphData, setGraphData] = useState<GraphData[]>([] as GraphData[]);
-
-  const loggedIn = localStorage.getItem("authenticated");
+  const admin = Cookies.get("admin")
+  const loggedIn = Cookies.get("authenticated");
 
   // When the page renders, hit the API
   React.useEffect(() => {
+    const loginsRoute = admin === "true" ? "/v1/admin/logins" : "/v1/logins"
     if (loggedIn) {
       axios
-        .post("/v1/logins", {
+        .post(loginsRoute, {
           professorID: localStorage.getItem("id"),
         })
         .then((response) => {
@@ -85,6 +87,7 @@ function Home() {
   } else {
     return (
       <div className="Home">
+       <Navbar />
         <div className="main">
           <div className="charts">
             <div>{graph1}</div>
