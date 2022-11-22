@@ -36,6 +36,10 @@
   padding: 0;
 }
 
+.dis {
+  pointer-events: none;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;

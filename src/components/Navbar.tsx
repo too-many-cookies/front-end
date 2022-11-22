@@ -22,6 +22,7 @@ const Navbar = () => {
     const loginScreen = window.location.href.includes("login")
 
     React.useEffect(() => {
+        const classRoutes = admin === "true" ? "/v1/admin/classes" : "/v1/classes"
         if (loggedIn) {
             axios
                 .post("/v1/notifications", {
@@ -35,7 +36,7 @@ const Navbar = () => {
                     console.log(err);
                 });
             axios
-                .post("/v1/classes", {
+                .post(classRoutes, {
                     professorID: localStorage.getItem("id"),
                 })
                 .then((response) => {
@@ -85,29 +86,40 @@ const Navbar = () => {
 
                     {/* Left Elements */}
                     {!loginScreen && 
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/home">Home</a>
-                        </li>
-                        {/* <li className="nav-item dropdown">
-                            <a className="nav-link" href="/classes">Classes</a>
-                        </li> */}
-                        {admin === "false" &&
-                        <div className="dropdown">
-                            <li className="nav-item dropdown">
-                                <a className="nav-link" href="/classes/">Classes</a>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/home">Home</a>
                             </li>
-                            <div className="dropdown-menu">
-                            {classes.map((thisClass, index) => (
-                                <a className = "dropdown-item" onClick={() => routeChange(thisClass.class_id)}>{thisClass.name}</a>
-                            ))}
-                            </div>
-                        </div>
-                        }
-                        <li className="nav-item">
-                            <a className="nav-link" href="/activitylog">Activity Log</a>
-                        </li>
-                    </ul>
+                            {admin === "false" &&
+                                <div className="dropdown">
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link" href="/classes/">Classes</a>
+                                    </li>
+                                    <div className="dropdown-menu">
+                                    {classes.map((thisClass, index) => (
+                                        <a className = "dropdown-item" onClick={() => routeChange(thisClass.class_id)}>{thisClass.name}</a>
+                                    ))}
+                                    </div>
+                                </div>                       
+                            }
+
+                            {admin === "true" &&
+                                <div className="dropdown">
+                                    <li className="nav-item dropdown">
+                                        <a  href="/classes/" className="nav-link dis">Classes</a>
+                                    </li>
+                                    <div className="dropdown-menu">
+                                    {classes.map((thisClass, index) => (
+                                        <a className = "dropdown-item" onClick={() => routeChange(thisClass.class_id)}>{thisClass.name}</a>
+                                    ))}
+                                    </div>
+                                </div>                                                         
+                            }
+                            <li className="nav-item">
+                                <a className="nav-link" href="/activitylog">Activity Log</a>
+                            </li>
+                        </ul>
+                    }
 
                     {/* Right Element */}
                     {!loginScreen &&
