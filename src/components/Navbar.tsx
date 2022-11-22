@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 const Navbar = () => {
-    const loggedIn = localStorage.getItem("authenticated");
+    const loggedIn = Cookies.get("authenticated")
     const admin = Cookies.get("admin")
     const [notifications, setNotifications] = useState<NotificationInfo[]>([] as NotificationInfo[]);
     const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
