@@ -2,14 +2,25 @@ import "../styles/navbar.css"
 import { FaBell } from "react-icons/fa";
 import axios from "axios";
 import React, { useState } from "react";
-import { NotificationInfo } from "../interfaces";
+import { NotificationInfo, ClassInfo } from "../interfaces";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 const Navbar = () => {
     const loggedIn = localStorage.getItem("authenticated");
     const admin = Cookies.get("admin")
     const [notifications, setNotifications] = useState<NotificationInfo[]>([] as NotificationInfo[]);
+    const [classes, setClasses] = useState<ClassInfo[]>([] as ClassInfo[]);
+
+    const navigate = useNavigate();
+    const routeChange = (id: Number) => {
+        const path = `/classes/${id}`;
+        navigate(path);
+        window.location.reload()
+    };
     const loginScreen = window.location.href.includes("login")
+
     React.useEffect(() => {
         if (loggedIn) {
             axios
@@ -19,6 +30,17 @@ const Navbar = () => {
                 .then((response) => {
                     console.log(response.data.message)
                     setNotifications(response.data.message);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            axios
+                .post("/v1/classes", {
+                    professorID: localStorage.getItem("id"),
+                })
+                .then((response) => {
+                    console.log(response.data.message)
+                    setClasses(response.data.message);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -54,7 +76,7 @@ const Navbar = () => {
                     {/* RIT Logo */}
                     <a className="navbar-brand mt-2 mt-lg-0" href="#">
                         <img
-                            src="RIT_hor_w.png"
+                            src="/RIT_hor_w.png"
                             height="40"
                             alt="RIT Logo"
                             loading="lazy"
@@ -63,21 +85,29 @@ const Navbar = () => {
 
                     {/* Left Elements */}
                     {!loginScreen && 
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/home">Home</a>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/home">Home</a>
+                        </li>
+                        {/* <li className="nav-item dropdown">
+                            <a className="nav-link" href="/classes">Classes</a>
+                        </li> */}
+                        {admin === "false" &&
+                        <div className="dropdown">
+                            <li className="nav-item dropdown">
+                                <a className="nav-link" href="/classes/">Classes</a>
                             </li>
-                            {admin === "false" &&
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/classes">Classes</a>
-                                </li>                           
-                            }
-
-                            <li className="nav-item">
-                                <a className="nav-link" href="/activitylog">Activity Log</a>
-                            </li>
-                        </ul>                   
-                    }
+                            <div className="dropdown-menu">
+                            {classes.map((thisClass, index) => (
+                                <a className = "dropdown-item" onClick={() => routeChange(thisClass.class_id)}>{thisClass.name}</a>
+                            ))}
+                            </div>
+                        </div>
+                        }
+                        <li className="nav-item">
+                            <a className="nav-link" href="/activitylog">Activity Log</a>
+                        </li>
+                    </ul>
 
                     {/* Right Element */}
                     {!loginScreen &&
